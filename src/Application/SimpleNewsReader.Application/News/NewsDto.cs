@@ -1,4 +1,4 @@
-﻿using FluentValidation;
+﻿using ValidationException = SimpleNewsReader.Application.Exceptions.ValidationException;
 
 namespace SimpleNewsReader.Application.News;
 

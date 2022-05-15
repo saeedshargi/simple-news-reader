@@ -1,5 +1,6 @@
 ﻿using HtmlAgilityPack;
 using SimpleNewsReader.Application.News;
+using SimpleNewsReader.Domain.Exceptions;
 
 namespace SimpleNewsReader.Infrastructure.PageScraping;
 
@@ -9,6 +10,8 @@ public class PageScrapingService: IPageScrapingService
     private const string PageName = "https://www.zoomit.ir/";
     public async Task<IReadOnlyList<NewsDto>> GetNewsOfPageAsync(int pageNumber)
     {
+        if (pageNumber <= 0)
+            throw new BadRequestException("Page number is not valid!");
         var newsList = new List<NewsDto>();
         var htmlWeb = new HtmlWeb();
         var htmlDoc = htmlWeb.Load($"{PageUrl}{pageNumber}/");

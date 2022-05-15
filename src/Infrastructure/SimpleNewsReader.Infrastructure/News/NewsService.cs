@@ -34,7 +34,7 @@ public class NewsService: INewsService
         return _mapper.Map<List<NewsDto>>(newsInPage);
     }
 
-    private async Task<IReadOnlyList<Domain.Entities.News>> GetNewsByIdsAsync(IEnumerable<long> newsIds)
+    public async Task<IReadOnlyList<Domain.Entities.News>> GetNewsByIdsAsync(IEnumerable<long> newsIds)
     {
         return await _context.Newses.Where(x => newsIds.Contains(x.NewsId)).Select(x => x).ToListAsync();
     }
