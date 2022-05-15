@@ -7,11 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="FluentValidation" Version="11.0.1" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.0.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Controllers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Application\SimpleNewsReader.Application\SimpleNewsReader.Application.csproj" />
+    <ProjectReference Include="..\..\Domain\SimpleNewsReader.Domain\SimpleNewsReader.Domain.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\SimpleNewsReader.Infrastructure\SimpleNewsReader.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
