@@ -15,10 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\Application\SimpleNewsReader.Application\SimpleNewsReader.Application.csproj" />
     <ProjectReference Include="..\..\Domain\SimpleNewsReader.Domain\SimpleNewsReader.Domain.csproj" />
     <ProjectReference Include="..\..\Infrastructure\SimpleNewsReader.Infrastructure\SimpleNewsReader.Infrastructure.csproj" />

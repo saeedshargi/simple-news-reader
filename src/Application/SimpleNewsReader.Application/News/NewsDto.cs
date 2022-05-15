@@ -1,4 +1,6 @@
-﻿namespace SimpleNewsReader.Application.News;
+﻿using FluentValidation;
+
+namespace SimpleNewsReader.Application.News;
 
 public class NewsDto
 {
@@ -12,4 +14,17 @@ public class NewsDto
     public string? ImageUrl { get; set; }
     public string? CreatedDate { get; set; }
     public string? ModifiedDate { get; set; }
+
+    public void ValidateNews()
+    {
+        var newsValidator = new NewsValidator();
+        var validationResult = newsValidator.Validate(this);
+        if (!validationResult.IsValid)
+        {
+            var validationErrorMessage =string.Join("\n",
+                validationResult.Errors.SelectMany(x =>
+                    $"{x.PropertyName} failed validation.Error is : {x.ErrorMessage}"));
+            throw new ValidationException(validationErrorMessage);
+        }
+    }
 }

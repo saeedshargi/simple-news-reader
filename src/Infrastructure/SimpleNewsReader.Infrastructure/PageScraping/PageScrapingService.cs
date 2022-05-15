@@ -9,13 +9,13 @@ public class PageScrapingService: IPageScrapingService
     private const string PageName = "https://www.zoomit.ir/";
     public async Task<IReadOnlyList<NewsDto>> GetNewsOfPageAsync(int pageNumber)
     {
-        var news = new List<NewsDto>();
+        var newsList = new List<NewsDto>();
         var htmlWeb = new HtmlWeb();
         var htmlDoc = htmlWeb.Load($"{PageUrl}{pageNumber}/");
         var newNewsNode = htmlDoc.GetElementbyId("ArticleDetails").FirstChild;
         if (newNewsNode == null)
         {
-            return news;
+            return newsList;
         }
 
         foreach (var node in newNewsNode.ChildNodes.Where(x => x.HasClass("item-list-row")))
@@ -32,7 +32,7 @@ public class PageScrapingService: IPageScrapingService
             var authorNode = contentNode.ChildNodes.FirstOrDefault(x => x.HasClass("ListItemHeader"));
             var author = authorNode?.ChildNodes.FirstOrDefault(x => x.HasClass("authorlist"))?.InnerText ?? "";
             var createDate = authorNode?.ChildNodes.FirstOrDefault(x => x.HasClass("datelist"))?.InnerText ?? "";
-            news.Add(new NewsDto
+            var news = new NewsDto
             {
                 Description = description,
                 Author = author,
@@ -41,9 +41,11 @@ public class PageScrapingService: IPageScrapingService
                 NewsId = long.Parse(newsId),
                 PublishDate = createDate,
                 Title = title
-            });
+            };
+            news.ValidateNews();
+            newsList.Add(news);
         }
         
-        return news;
+        return newsList;
     }
 }
