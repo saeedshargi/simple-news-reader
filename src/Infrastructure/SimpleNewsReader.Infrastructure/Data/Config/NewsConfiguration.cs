@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SimpleNewsReader.Domain.Entities;
 
 namespace SimpleNewsReader.Infrastructure.Data.Config;
 
