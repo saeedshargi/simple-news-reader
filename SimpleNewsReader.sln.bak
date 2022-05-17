@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleNewsReader.WebApi", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleNewsReader.UnitTests", "tests\UnitTests\SimpleNewsReader.UnitTests\SimpleNewsReader.UnitTests.csproj", "{3A42E4AB-4995-4098-8035-2C6C27C6EAEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleNewsReader.IntegrationTests", "tests\IntegrationTests\SimpleNewsReader.IntegrationTests\SimpleNewsReader.IntegrationTests.csproj", "{EB63A00D-699E-4323-A0B6-43F5A8A7B6E7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleNewsReader.IntegrationTests", "src\IntegrationTests\SimpleNewsReader.IntegrationTests\SimpleNewsReader.IntegrationTests.csproj", "{EB63A00D-699E-4323-A0B6-43F5A8A7B6E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
