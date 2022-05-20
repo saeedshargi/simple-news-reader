@@ -22,14 +22,11 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+app.UseSwagger();
+app.UseSwaggerUI(option =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(option =>
-    {
-        option.SwaggerEndpoint("/swagger/v1/swagger.json","Simple News Reader API V1");
-    });
-}
+    option.SwaggerEndpoint("/swagger/v1/swagger.json","Simple News Reader API V1");
+});
 
 app.UseHttpsRedirection();
 

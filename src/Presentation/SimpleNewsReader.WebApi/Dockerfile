@@ -11,14 +11,14 @@ COPY src/Presentation/SimpleNewsReader.WebApi/* /Presentation/SimpleNewsReader.W
 COPY src/Domain/SimpleNewsReader.Domain/* /Domain/SimpleNewsReader.Domain/
 COPY src/Infrastructure/SimpleNewsReader.Infrastructure/* /Infrastructure/SimpleNewsReader.Infrastructure/
 COPY src/Application/SimpleNewsReader.Application/* /Application/SimpleNewsReader.Application/
-RUN dotnet restore "src/Presentation/SimpleNewsReader.WebApi/SimpleNewsReader.WebApi.csproj"
+RUN dotnet restore "/Presentation/SimpleNewsReader.WebApi/SimpleNewsReader.WebApi.csproj"
 COPY . .
-WORKDIR "/src/src/Presentation/SimpleNewsReader.WebApi"
-RUN dotnet clean "SimpleNewsReader.WebApi.csproj"
-RUN dotnet build "SimpleNewsReader.WebApi.csproj" -c Release -o /app/build --no-restore
+WORKDIR /src
+RUN dotnet clean "/Presentation/SimpleNewsReader.WebApi/SimpleNewsReader.WebApi.csproj"
+RUN dotnet build "/Presentation/SimpleNewsReader.WebApi/SimpleNewsReader.WebApi.csproj" -c Release -o /app/build --no-restore
 
 FROM build AS publish
-RUN dotnet publish "SimpleNewsReader.WebApi.csproj" -c Release -o /app/publish
+RUN dotnet publish "/Presentation/SimpleNewsReader.WebApi/SimpleNewsReader.WebApi.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app

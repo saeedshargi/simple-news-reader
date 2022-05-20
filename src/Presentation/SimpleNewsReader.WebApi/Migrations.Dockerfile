@@ -11,7 +11,7 @@ RUN dotnet tool install --global dotnet-ef
 RUN dotnet restore /Presentation/SimpleNewsReader.WebApi/SimpleNewsReader.WebApi.csproj
 
 
-RUN /root/.dotnet/tools/dotnet-ef migrations add InitialMigrations --project /Infrastructure/SimpleNewsReader.Infrastructure/SimpleNewsReader.Infrastructure.csproj --startup-project /Presentation/SimpleNewsReader.WebApi/SimpleNewsReader.WebApi.csproj
+RUN /root/.dotnet/tools/dotnet-ef migrations add InitialMigrations --project /Infrastructure/SimpleNewsReader.Infrastructure/SimpleNewsReader.Infrastructure.csproj --startup-project /Presentation/SimpleNewsReader.WebApi/SimpleNewsReader.WebApi.csproj -- --environment Production
 
 RUN chmod +x /Presentation/SimpleNewsReader.WebApi/setup.sh
 CMD /bin/bash /Presentation/SimpleNewsReader.WebApi/setup.sh
