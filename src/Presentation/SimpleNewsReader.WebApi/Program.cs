@@ -1,20 +1,15 @@
 using FluentValidation;
 using SimpleNewsReader.Application;
-using SimpleNewsReader.Domain.Common;
 using SimpleNewsReader.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
-
-var newsSettings = builder.Configuration.GetSection("ConnectionString").Get<NewsSettings>();
-string connectionString;
-#if DEBUG
-connectionString = newsSettings.LocalSqlServer ?? "";
-#else
-connectionString = newsSettings.DevelopSqlServer;
-#endif
+builder.Configuration
+    .AddJsonFile("appsettings.json")
+    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json")
+    .AddEnvironmentVariables();
 
 // Add services to the container.
-builder.Services.AddDbContext(connectionString);
+builder.Services.AddDbContext(builder.Configuration.GetConnectionString("DefaultConnectionString"));
 builder.Services.ResolveServices();
 var applicationAssembly = typeof(AssemblyReferences).Assembly;
 builder.Services.AddAutoMapper(applicationAssembly);
